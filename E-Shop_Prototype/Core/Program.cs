@@ -1,9 +1,9 @@
-using E_Shop_Mini.Database;
+using Core.Database;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace E_Shop_Mini
+namespace Core
 {
     public class Program
     {

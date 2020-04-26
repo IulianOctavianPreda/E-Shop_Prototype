@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace E_Shop_Mini.Models.Configurations
+namespace Core.Models.Configurations
 {
     public class UserMapping : IEntityTypeConfiguration<User>
     {
@@ -17,6 +17,10 @@ namespace E_Shop_Mini.Models.Configurations
                 .IsRequired(true);
 
             builder.HasMany(m => m.Orders)
+                .WithOne(p => p.User)
+                .IsRequired(true);
+
+            builder.HasOne(m => m.Cart)
                 .WithOne(p => p.User)
                 .IsRequired(true);
         }

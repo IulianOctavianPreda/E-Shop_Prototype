@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
-using E_Shop_Mini.Models;
+using Core.Models;
+using Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Database
@@ -11,6 +12,8 @@ namespace Core.Database
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderItems> OrderItems { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<CartItems> CartItems { get; set; }
 
 
         public SqlServerContext(DbContextOptions options) : base(options)

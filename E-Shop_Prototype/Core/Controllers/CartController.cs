@@ -7,22 +7,22 @@ using Microsoft.EntityFrameworkCore;
 namespace Core.Controllers
 {
     [ApiController]
-    [Route("product")]
-    public class ProductController : ControllerBase
+    [Route("cart")]
+    public class CartController : ControllerBase
     {
         private readonly SqlServerContext _context;
 
-        public ProductController(SqlServerContext context)
+        public CartController(SqlServerContext context)
         {
             _context = context;
         }
 
         [HttpGet]
         [Route("")]
-        public Product Get()
+        public Cart Get()
         {
-            var product = _context.Product.Include(x => x.Category);
-            return product.FirstOrDefault();
+            var cart = _context.Cart.Include(x => x.CartItems);
+            return cart.FirstOrDefault();
         }
     }
 }

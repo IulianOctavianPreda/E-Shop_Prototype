@@ -1,5 +1,5 @@
-using E_Shop_Mini.Database;
-using E_Shop_Mini.Helpers;
+using Core.Database;
+using Core.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace E_Shop_Mini
+namespace Core
 {
     public class Startup
     {

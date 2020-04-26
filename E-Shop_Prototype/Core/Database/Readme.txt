@@ -1,13 +1,13 @@
 ﻿Open Package Manager Console
-Select Database.E-Shop_Mini
+Select Core
 
 Run for initial migration
-Add-Migration InitialCreate -Context SqlServerContext -Project E-Shop_Mini -StartUpProject E-Shop_Mini
+Add-Migration InitialCreate -Context SqlServerContext -Project Core -StartUpProject Core
 
 For migrations
-Add-Migration<name> -Context SqlServerContext -Project E-Shop_Mini -StartUpProject E-Shop_Mini
-Remove-Migration -Context SqlServerContext -Project E-Shop_Mini -StartUpProject E-Shop_Mini
+Add-Migration<name> -Context SqlServerContext -Project Core -StartUpProject Core
+Remove-Migration -Context SqlServerContext -Project Core -StartUpProject Core
 
 For updating database
 
-Update-Database -Context SqlServerContext -Project E-Shop_Mini -StartUpProject E-Shop_Mini
+Update-Database -Context SqlServerContext -Project Core -StartUpProject Core

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using E_Shop_Mini.Database;
-using E_Shop_Mini.Models;
+using Core.Models;
+using Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Database

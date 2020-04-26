@@ -35,6 +35,11 @@ namespace Core.Models.Configurations
                 .WithOne(o => o.Product)
                 .HasForeignKey(p => p.ProductId)
                 .IsRequired(false);
+
+            builder.HasMany(e => e.CartItems)
+                .WithOne(o => o.Product)
+                .HasForeignKey(p => p.ProductId)
+                .IsRequired(false);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using E_Shop_Mini.Helpers;
+﻿using Core.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace E_Shop_Mini.Database
+namespace Core.Database
 {
     public class SqlServerContextFactory : IDesignTimeDbContextFactory<SqlServerContext>
     {
