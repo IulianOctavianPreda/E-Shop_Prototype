@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace E_Shop_Mini.Helpers
+namespace Core.Helpers
 {
     public static class ConfigurationResolver
     {

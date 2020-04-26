@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace E_Shop_Mini.Models
+namespace Core.Models
 {
     public class Category 
     {

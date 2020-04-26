@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace E_Shop_Mini.Migrations
+namespace Core.Migrations
 {
     public partial class M2 : Migration
     {

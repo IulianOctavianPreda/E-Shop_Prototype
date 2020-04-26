@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using E_Shop_Mini.Models;
 
-namespace E_Shop_Mini.Models
+namespace Core.Models
 {
     public class User
     {

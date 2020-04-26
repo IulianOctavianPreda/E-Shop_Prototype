@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace E_Shop_Mini.Models.Configurations
+namespace Core.Models.Configurations
 {
     public class CategoryMapping : IEntityTypeConfiguration<Category>
     {

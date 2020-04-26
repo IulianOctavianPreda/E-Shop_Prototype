@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using E_Shop_Mini.Database;
 using E_Shop_Mini.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace E_Shop_Mini.Database
+namespace Core.Database
 {
     public static class DbInitializer
     {

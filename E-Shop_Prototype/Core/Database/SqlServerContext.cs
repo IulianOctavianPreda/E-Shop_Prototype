@@ -2,7 +2,7 @@
 using E_Shop_Mini.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace E_Shop_Mini.Database
+namespace Core.Database
 {
     public class SqlServerContext : DbContext
     {

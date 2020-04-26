@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace E_Shop_Mini.Models
+namespace Core.Models
 {
     public class OrderItems 
     {
