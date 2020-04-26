@@ -1,7 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Core.Database;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Controllers
 {
@@ -17,11 +21,17 @@ namespace Core.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        public Order Get()
+        [Route("{userId:Guid}")]
+        public IEnumerable<Order> GetAllForUser(Guid userId)
         {
-            var order = _context.Order;
-            return order.FirstOrDefault();
+            return _context.Order.Include(x => x.OrderItems).Where(x => x.UserId == userId);
+        }
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public Order Get(Guid id)
+        {
+            return _context.Order.FirstOrDefault(x => x.Id == id);
         }
     }
 }

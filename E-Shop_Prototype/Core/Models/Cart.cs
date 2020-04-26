@@ -9,6 +9,6 @@ namespace Core.Models
         public Guid UserId { get; set; }
         public User User { get; set; }
 
-        public IEnumerable<CartItems> CartItems { get; set; }
+        public IEnumerable<CartItem> CartItems { get; set; }
     }
 }

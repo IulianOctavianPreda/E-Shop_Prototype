@@ -26,7 +26,7 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartItems",
+                name: "CartItem",
                 columns: table => new
                 {
                     CartId = table.Column<Guid>(nullable: false),
@@ -58,14 +58,14 @@ namespace Core.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartItems_ProductId",
-                table: "CartItems",
+                table: "CartItem",
                 column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CartItems");
+                name: "CartItem");
 
             migrationBuilder.DropTable(
                 name: "Cart");

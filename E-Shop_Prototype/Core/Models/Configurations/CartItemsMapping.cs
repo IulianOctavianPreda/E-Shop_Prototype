@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Core.Models.Configurations
 {
-    public class CartItemsMapping : IEntityTypeConfiguration<CartItems>
+    public class CartItemsMapping : IEntityTypeConfiguration<CartItem>
     {
-        public void Configure(EntityTypeBuilder<CartItems> builder)
+        public void Configure(EntityTypeBuilder<CartItem> builder)
         {
             builder.HasKey(e => new { e.CartId, e.ProductId });
 

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Core.Database;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +20,24 @@ namespace Core.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        public Product Get()
+        [Route("search")]
+        public IEnumerable<Product> Search([FromQuery] string search)
         {
-            var product = _context.Product.Include(x => x.Category);
-            return product.FirstOrDefault();
+            return _context.Product.Where(x => x.Name.Contains(search));
+        }
+
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Product> GetAll()
+        {
+            return _context.Product;
+        }
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public Product Get(Guid id)
+        {
+            return _context.Product.Include(x => x.Category).FirstOrDefault(x => x.Id == id);
         }
     }
 }

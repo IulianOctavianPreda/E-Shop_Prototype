@@ -75,7 +75,7 @@ namespace Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItems",
+                name: "OrderItem",
                 columns: table => new
                 {
                     OrderId = table.Column<Guid>(nullable: false),
@@ -106,7 +106,7 @@ namespace Core.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ProductId",
-                table: "OrderItems",
+                table: "OrderItem",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -118,7 +118,7 @@ namespace Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "OrderItems");
+                name: "OrderItem");
 
             migrationBuilder.DropTable(
                 name: "Order");

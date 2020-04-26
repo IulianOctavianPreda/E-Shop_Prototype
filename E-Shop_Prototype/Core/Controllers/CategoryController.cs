@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Core.Database;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +20,16 @@ namespace Core.Controllers
 
         [HttpGet]
         [Route("")]
-        public Category Get()
+        public IEnumerable<Category> GetAll()
         {
-            var category = _context.Category;
-            return category.FirstOrDefault();
+            return _context.Category;
+        }
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public Category Get(Guid id)
+        {
+            return _context.Category.FirstOrDefault(x => x.Id == id);
         }
     }
 }

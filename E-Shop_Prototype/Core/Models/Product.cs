@@ -16,7 +16,7 @@ namespace Core.Models
 
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
-        public IEnumerable<OrderItems> OrderItems { get; set; }
-        public IEnumerable<CartItems> CartItems { get; set; }
+        public IEnumerable<OrderItem> OrderItems { get; set; }
+        public IEnumerable<CartItem> CartItems { get; set; }
     }
 }

@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Core.Models.Configurations
 {
-    public class OrderItemsMapping : IEntityTypeConfiguration<OrderItems>
+    public class OrderItemsMapping : IEntityTypeConfiguration<OrderItem>
     {
-        public void Configure(EntityTypeBuilder<OrderItems> builder)
+        public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
             builder.HasKey(e => new { e.OrderId, e.ProductId });
 

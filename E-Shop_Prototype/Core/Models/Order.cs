@@ -11,6 +11,6 @@ namespace Core.Models
         public Guid UserId { get; set; }
         public User User { get; set; }
 
-        public IEnumerable<OrderItems> OrderItems { get; set; }
+        public IEnumerable<OrderItem> OrderItems { get; set; }
     }
 }

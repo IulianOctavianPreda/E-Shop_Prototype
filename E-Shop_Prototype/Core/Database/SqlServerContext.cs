@@ -10,10 +10,10 @@ namespace Core.Database
         public DbSet<User> User { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Order> Order { get; set; }
-        public DbSet<OrderItems> OrderItems { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Cart> Cart { get; set; }
-        public DbSet<CartItems> CartItems { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
 
         public SqlServerContext(DbContextOptions options) : base(options)
