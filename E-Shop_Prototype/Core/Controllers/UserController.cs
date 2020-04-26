@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Core.Controllers
 {
     [ApiController]
-    [Route("weather")]
-    public class WeatherForecastController : ControllerBase
+    [Route("user")]
+    public class UserController : ControllerBase
     {
         private readonly SqlServerContext _context;
 
-        public WeatherForecastController(SqlServerContext context)
+        public UserController(SqlServerContext context)
         {
             _context = context;
         }
@@ -20,7 +20,7 @@ namespace Core.Controllers
         [Route("")]
         public User Get()
         {
-            var user = _context.User.Where(x => x.Id != null);
+            var user = _context.User;
             return user.FirstOrDefault();
         }
     }
