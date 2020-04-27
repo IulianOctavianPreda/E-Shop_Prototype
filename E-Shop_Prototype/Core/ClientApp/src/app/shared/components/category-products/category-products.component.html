@@ -1,0 +1,7 @@
+<div class="col-12">
+  <div class="container-fluid" *ngFor="let category of categoryItems">
+    <h1>{{ category.name }}</h1>
+    <hr />
+    <app-product-grid [products]="category.products"></app-product-grid>
+  </div>
+</div>

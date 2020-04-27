@@ -1,0 +1,3 @@
+<div class="container" *ngIf="categories$ | async; let categories">
+  <app-category-products [categoryItems]="categories"></app-category-products>
+</div>

@@ -53,7 +53,7 @@ namespace Core.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("Core.Models.Category", b =>
@@ -108,7 +108,7 @@ namespace Core.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Core.Models.Product", b =>
@@ -117,7 +117,7 @@ namespace Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -179,13 +179,13 @@ namespace Core.Migrations
             modelBuilder.Entity("Core.Models.CartItem", b =>
                 {
                     b.HasOne("Core.Models.Cart", "Cart")
-                        .WithMany("CartItem")
+                        .WithMany("CartItems")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.Models.Product", "Product")
-                        .WithMany("CartItem")
+                        .WithMany("CartItems")
                         .HasForeignKey("ProductId");
                 });
 
@@ -201,23 +201,21 @@ namespace Core.Migrations
             modelBuilder.Entity("Core.Models.OrderItem", b =>
                 {
                     b.HasOne("Core.Models.Order", "Order")
-                        .WithMany("OrderItem")
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.Models.Product", "Product")
-                        .WithMany("OrderItem")
+                        .WithMany("OrderItems")
                         .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Core.Models.Product", b =>
                 {
-                    b.HasOne("Core.Models.Category", "Category")
+                    b.HasOne("Core.Models.Category", null)
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }

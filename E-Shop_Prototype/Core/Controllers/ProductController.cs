@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Database;
+using Core.DTOs;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,16 +29,19 @@ namespace Core.Controllers
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<ProductDto> GetAll()
         {
-            return _context.Product;
+            return _context.Product.Select(x => new ProductDto(x));
         }
 
         [HttpGet]
         [Route("{id:Guid}")]
-        public Product Get(Guid id)
+        public ProductDto Get(Guid id)
         {
-            return _context.Product.Include(x => x.Category).FirstOrDefault(x => x.Id == id);
+            return new ProductDto(_context.Product.FirstOrDefault(x => x.Id == id));
         }
+
+        
+
     }
 }

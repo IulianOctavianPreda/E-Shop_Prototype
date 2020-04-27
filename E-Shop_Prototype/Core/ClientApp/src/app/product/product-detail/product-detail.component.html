@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <span class="col-12 d-flex justify-content-center"
+        ><img [src]="product.imageData" style="max-width: 100px;"
+      /></span>
+    </div>
+    <div class="col-8">
+      <span class="col-12 d-flex justify-content-center"
+        >{{ product.name }}
+      </span>
+      <span class="col-12 d-flex justify-content-center">{{
+        product.price | currency: "RON"
+      }}</span>
+      <span class="col-12 d-flex justify-content-center">{{
+        product.description
+      }}</span>
+    </div>
+  </div>
+</div>

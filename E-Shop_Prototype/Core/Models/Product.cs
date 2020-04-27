@@ -14,8 +14,6 @@ namespace Core.Models
         public string SpecificationFilePath { get; set; }
 
 
-        public Guid CategoryId { get; set; }
-        public Category Category { get; set; }
         public IEnumerable<OrderItem> OrderItems { get; set; }
         public IEnumerable<CartItem> CartItems { get; set; }
     }

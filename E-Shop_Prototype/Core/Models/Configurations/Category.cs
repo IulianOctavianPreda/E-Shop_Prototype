@@ -13,9 +13,6 @@ namespace Core.Models.Configurations
                 .HasMaxLength(50)
                 .IsRequired(true);
 
-            builder.HasMany(e => e.Products)
-                .WithOne(p => p.Category)
-                .IsRequired(false);
         }
     }
 }

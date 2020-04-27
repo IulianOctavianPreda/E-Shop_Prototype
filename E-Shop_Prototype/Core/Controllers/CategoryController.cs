@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Database;
+using Core.DTOs;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Controllers
 {
@@ -23,6 +25,15 @@ namespace Core.Controllers
         public IEnumerable<Category> GetAll()
         {
             return _context.Category;
+        }
+
+        [HttpGet]
+        [Route("dashboard")]
+        public IEnumerable<CategoryDto> GetDashboardCategories()
+        {
+
+            var category = _context.Category.Include(x =>x.Products).Select(x => new CategoryDto(x));
+            return category;
         }
 
         [HttpGet]

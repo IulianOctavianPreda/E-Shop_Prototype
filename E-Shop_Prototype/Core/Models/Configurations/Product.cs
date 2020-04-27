@@ -26,11 +26,6 @@ namespace Core.Models.Configurations
             builder.Property(e => e.Price)
                 .IsRequired(true);
 
-            builder.HasOne(e => e.Category)
-                .WithMany(p => p.Products)
-                .HasForeignKey(e => e.CategoryId)
-                .IsRequired(true);
-
             builder.HasMany(e => e.OrderItems)
                 .WithOne(o => o.Product)
                 .HasForeignKey(p => p.ProductId)

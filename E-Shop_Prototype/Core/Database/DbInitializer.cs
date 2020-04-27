@@ -35,13 +35,11 @@ namespace Core.Database
 
             context.SaveChanges();
 
-            var cat1Id = Guid.NewGuid();
-            var cat2Id = Guid.NewGuid();
-
             var categories = new Category[]
             {
-            new Category{Id = cat1Id, Name = "Books"},
-            new Category{Id = cat2Id, Name = "Technology"},
+            new Category{Id = Guid.NewGuid(), Name = "Books"},
+            new Category{Id = Guid.NewGuid(), Name = "Movies"},
+            new Category{Id = Guid.NewGuid(), Name = "Technology"},
             };
             foreach (var c in categories)
             {
@@ -51,8 +49,16 @@ namespace Core.Database
 
             var products = new Product[]
             {
-            new Product{Id = Guid.NewGuid(), CategoryId = cat1Id, Name = "Lord of the Rings", ImagePath = "./Images/Lotr.jpg", SpecificationFilePath = "./Spec/Lotr.pdf", Description = "Lord of the rings book, just now in the shop. best seller", Price = 2000},
-            new Product{Id = Guid.NewGuid(), CategoryId = cat2Id, Name = "Lord of the PCs", ImagePath = "./Images/pc.jpg", SpecificationFilePath = "./Spec/pc.pdf", Description = "Lord of the PCs, just now in the shop. best PC", Price = 4000},            };
+            new Product{Id = Guid.NewGuid(),  Name = "Lord of the Rings", ImagePath = "./Assets/Images/Lotr.jpg", SpecificationFilePath = "./Assets/Specifications/Lotr.pdf", Description = "Lord of the rings book, just now in the shop. best seller", Price = 20},
+
+            new Product{Id = Guid.NewGuid(),  Name = "Parasite", ImagePath = "./Assets/Images/parasite.jpg", SpecificationFilePath = "./Assets/Specifications/parasite.pdf", Description = "Oscar winning movie", Price = 55},
+
+            new Product{Id = Guid.NewGuid(),  Name = "Ryzen 3900X", ImagePath = "./Assets/Images/ryzen3900.jpg", SpecificationFilePath = "./Assets/Specifications/ryzen3900.pdf", Description = "AMD CPU for AM4 socket", Price = 4000},
+
+            new Product{Id = Guid.NewGuid(),  Name = "Ryzen 3700X", ImagePath = "./Assets/Images/ryzen3700.jpg", SpecificationFilePath = "./Assets/Specifications/ryzen3700.pdf", Description = "AMD CPU for AM4 socket", Price = 3000},
+
+            };
+
             foreach (var e in products)
             {
                 context.Product.Add(e);
