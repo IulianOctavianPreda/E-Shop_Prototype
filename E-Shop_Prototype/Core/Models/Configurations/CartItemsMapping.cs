@@ -14,7 +14,6 @@ namespace Core.Models.Configurations
                 .HasForeignKey(e => e.CartId)
                 .IsRequired(true);
 
-
             builder.HasOne(e => e.Product)
                 .WithMany(p => p.CartItems)
                 .HasForeignKey(e => e.ProductId)

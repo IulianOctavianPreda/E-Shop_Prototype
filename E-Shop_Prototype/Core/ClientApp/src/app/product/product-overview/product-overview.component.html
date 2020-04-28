@@ -1,4 +1,7 @@
 <div class="col-12">
+  <div class="container" *ngIf="products?.length === 0">
+    No products found
+  </div>
   <div class="container-fluid" *ngFor="let product of products">
     <h1>{{ product.name }}</h1>
     <hr />

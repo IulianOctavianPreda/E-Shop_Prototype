@@ -1,4 +1,6 @@
+using System.Linq;
 using Core.Database;
+using Core.Services;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +11,7 @@ namespace Core
     {
         public static void Main(string[] args)
         {
+
             var host = CreateWebHostBuilder(args).Build();
 
 
@@ -18,6 +21,8 @@ namespace Core
                 var context = services.GetRequiredService<SqlServerContext>();
                 DbInitializer.Initialize(context);
 
+                var luceneService = services.GetRequiredService<ILuceneService>();
+                luceneService.AddSpecificationToIndex(context.Product.ToList());
             }
             host.Run();
         }

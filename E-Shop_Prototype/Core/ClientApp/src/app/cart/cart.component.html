@@ -1,0 +1,55 @@
+<div class="col-12">
+  <div class="container-fluid">
+    <h1>Cart</h1>
+    <hr />
+    <div *ngIf="cart?.cartItems?.length == 0">
+      No items added to the cart
+    </div>
+    <div class="row" *ngIf="cart?.cartItems?.length > 0">
+      <ng-container *ngFor="let item of cart.cartItems">
+        <div class="d-flex col-12 justify-content-between border-bottom">
+          <span class="col-3 d-flex justify-content-center align-items-center"
+            ><img [src]="item.product.imageData" style="max-width: 100px;"
+          /></span>
+          <span class="col-3 d-flex justify-content-center align-items-center"
+            ><a [routerLink]="['/product', item.product.id]">{{
+              item.product.name
+            }}</a>
+          </span>
+          <span
+            class="col-3 d-flex justify-content-center align-items-center"
+            >{{ item.product.price | currency: "RON" }}</span
+          >
+          <span class="col-3 d-flex justify-content-center align-items-center">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Quantity"
+              [value]="item.quantity"
+              (keyup)="item.quantity = $event.target.value"
+            />
+            <button
+              class="btn btn-info"
+              type="button"
+              (click)="remove(item.product.id)"
+            >
+              Delete
+            </button>
+            <button
+              class="btn btn-info"
+              type="button"
+              (click)="update(item.product.id, item.quantity)"
+            >
+              Update
+            </button>
+          </span>
+        </div>
+      </ng-container>
+    </div>
+    <div class="row justify-content-end" *ngIf="cart?.cartItems?.length > 0">
+      <button class="btn btn-info" type="button" (click)="order()">
+        Order
+      </button>
+    </div>
+  </div>
+</div>

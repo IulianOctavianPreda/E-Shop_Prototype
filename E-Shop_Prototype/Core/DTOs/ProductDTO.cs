@@ -11,7 +11,6 @@ namespace Core.DTOs
         public string Description { get; set; }
         public double Price { get; set; }
         public string ImageData { get; set; }
-        public int Quantity { get; set; }
         //public string SpecificationFilePath { get; set; }
 
         public ProductDto(Product product)
@@ -21,7 +20,6 @@ namespace Core.DTOs
             Description = product.Description;
             Price = product.Price;
             ImageData = ImagePathToBase64(product.ImagePath);
-            Quantity = 0;
         }
 
         private string ImagePathToBase64(string path)

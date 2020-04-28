@@ -18,13 +18,15 @@ const routes: Routes = [
       {
         path: "overview",
         component: ProductOverviewComponent,
-        resolve: ProductSearchResolve,
+        resolve: {
+          products: ProductSearchResolve,
+        },
       },
       {
         path: ":id",
         component: ProductDetailComponent,
         resolve: {
-          products: ProductResolve,
+          product: ProductResolve,
         },
       },
     ],

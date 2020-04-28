@@ -12,5 +12,6 @@ export class ProductOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.products = this.route.snapshot.data.products;
+    console.log(this.products);
   }
 }

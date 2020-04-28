@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Core.Database;
+using Core.DTOs;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,16 +22,17 @@ namespace Core.Controllers
 
         [HttpGet]
         [Route("{userId:Guid}")]
-        public Cart Get(Guid userId)
+        public CartDto Get(Guid userId)
         {
-            var cart = _context.Cart.Include(x => x.CartItems).FirstOrDefault(x => x.UserId == userId);
+            var cart = _context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId);
             if (cart == null)
             {
                 _context.Cart.Add(new Cart {UserId = userId});
                 _context.SaveChanges();
+                cart = _context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId);
             }
 
-            return _context.Cart.Include(x => x.CartItems).FirstOrDefault(x => x.UserId == userId);
+            return new CartDto(cart);
         }
 
         public class CartUpdate
@@ -40,9 +43,14 @@ namespace Core.Controllers
 
         [HttpPost]
         [Route("{userId:Guid}/{productId:Guid}")]
-        public Cart Add(Guid userId, Guid productId)
+        public void Add(Guid userId, Guid productId)
         {
             var cart = _context.Cart.Include(x => x.CartItems).FirstOrDefault(x => x.UserId == userId);
+            if (cart == null)
+            {
+                cart = new Cart {UserId = userId, CartItems = new List<CartItem>()};
+                _context.Cart.Add(cart);
+            }
             var product = cart.CartItems.FirstOrDefault(x => x.ProductId == productId);
             if (product == null)
             {
@@ -53,15 +61,14 @@ namespace Core.Controllers
                 product.Quantity++;
             }
             _context.SaveChanges();
-            return _context.Cart.Include(x => x.CartItems).FirstOrDefault(x => x.UserId == userId);
         }
 
 
         [HttpPost]
-        [Route("{userId:Guid}")]
-        public Cart Update(Guid userId, [FromBody] CartUpdate data)
+        [Route("{userId:Guid}/update")]
+        public CartDto Update(Guid userId, [FromBody] CartUpdate data)
         {
-            var cart = _context.Cart.Include(x => x.CartItems).FirstOrDefault(x => x.UserId == userId);
+            var cart = _context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId);
             var product = cart.CartItems.FirstOrDefault(x => x.ProductId == data.ProductId);
             if (product == null)
             {
@@ -70,17 +77,21 @@ namespace Core.Controllers
             else
             {
                 product.Quantity = data.Quantity;
+                if (data.Quantity == 0)
+                {
+                    _context.CartItems.Remove(product);
+                }
             }
             _context.SaveChanges();
-            return _context.Cart.Include(x => x.CartItems).FirstOrDefault(x => x.UserId == userId);
+            return new CartDto(_context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId));
         }
 
 
         [HttpPost]
-        [Route("{userId:Guid}")]
+        [Route("{userId:Guid}/order")]
         public Cart Order(Guid userId)
         {
-            var cart = _context.Cart.Include(x => x.CartItems).FirstOrDefault(x => x.UserId == userId);
+            var cart = _context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId);
 
             var order = new Order
             {
@@ -92,10 +103,10 @@ namespace Core.Controllers
                     Quantity = x.Quantity
                 })
             };
-            _context.Add(order);
+            _context.Order.Add(order);
 
             _context.SaveChanges();
-            return _context.Cart.Include(x => x.CartItems).FirstOrDefault(x => x.UserId == userId);
+            return _context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId);
         }
 
     }

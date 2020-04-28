@@ -1,5 +1,6 @@
 using Core.Database;
 using Core.Helpers;
+using Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,8 @@ namespace Core
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSingleton<ILuceneService, LuceneService>();
 
         }
 
