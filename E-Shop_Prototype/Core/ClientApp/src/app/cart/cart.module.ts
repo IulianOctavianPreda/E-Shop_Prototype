@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { CartRoutingModule } from "./cart-routing.module";
 import { CartComponent } from "./cart.component";
-import { CartResolve } from "./services/card.resolve";
+import { CartResolve } from "./services/cart.resolve";
 
 @NgModule({
   declarations: [CartComponent],

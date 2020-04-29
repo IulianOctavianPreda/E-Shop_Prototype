@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Database;
+using Core.DTOs;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,16 +23,16 @@ namespace Core.Controllers
 
         [HttpGet]
         [Route("{userId:Guid}")]
-        public IEnumerable<Order> GetAllForUser(Guid userId)
+        public IEnumerable<OrderDto> GetAllForUser(Guid userId)
         {
-            return _context.Order.Include(x => x.OrderItems).Where(x => x.UserId == userId);
+            return _context.Order.Include(x => x.OrderItems).ThenInclude(y => y.Product).Where(x => x.UserId == userId).Select(x => new OrderDto(x));
         }
 
-        [HttpGet]
-        [Route("{id:Guid}")]
-        public Order Get(Guid id)
-        {
-            return _context.Order.FirstOrDefault(x => x.Id == id);
-        }
+        //[HttpGet]
+        //[Route("{id:Guid}")]
+        //public Order Get(Guid id)
+        //{
+        //    return _context.Order.FirstOrDefault(x => x.Id == id);
+        //}
     }
 }

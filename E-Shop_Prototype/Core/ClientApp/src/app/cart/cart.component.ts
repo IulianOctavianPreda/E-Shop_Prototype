@@ -14,7 +14,7 @@ export class CartComponent implements OnInit {
   constructor(private route: ActivatedRoute, public http: HttpClient) {}
 
   ngOnInit(): void {
-    this.cart = this.route.snapshot.data.products;
+    this.cart = this.route.snapshot.data.cart;
   }
   remove(id) {
     this.update(id, 0);

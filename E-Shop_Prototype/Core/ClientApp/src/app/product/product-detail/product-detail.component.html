@@ -1,8 +1,8 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row h-50">
     <div class="col-4">
       <span class="col-12 d-flex justify-content-center"
-        ><img [src]="product.imageData" style="max-width: 100px;"
+        ><img [src]="product.imageData" style="max-width: 500px;"
       /></span>
     </div>
     <div class="col-8">
@@ -15,6 +15,11 @@
       <span class="col-12 d-flex justify-content-center">{{
         product.description
       }}</span>
+      <span class="col-12 d-flex justify-content-center">
+        <button class="btn btn-info" type="button" (click)="quickAdd(item)">
+          Quick Add
+        </button>
+      </span>
     </div>
   </div>
 </div>

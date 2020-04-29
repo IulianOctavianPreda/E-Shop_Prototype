@@ -1,15 +1,15 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { CartComponent } from "./cart.component";
-import { CartResolve } from "./services/cart.resolve";
+import { OrderComponent } from "./order.component";
+import { OrderResolve } from "./services/order.resolve";
 
 const routes: Routes = [
   {
     path: "",
-    component: CartComponent,
+    component: OrderComponent,
     resolve: {
-      cart: CartResolve,
+      orders: OrderResolve,
     },
   },
 ];
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CartRoutingModule {}
+export class OrderRoutingModule {}

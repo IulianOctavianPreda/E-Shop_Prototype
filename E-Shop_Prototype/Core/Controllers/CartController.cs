@@ -6,6 +6,7 @@ using Core.DTOs;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Core.Controllers
 {
@@ -89,7 +90,7 @@ namespace Core.Controllers
 
         [HttpPost]
         [Route("{userId:Guid}/order")]
-        public Cart Order(Guid userId)
+        public CartDto Order(Guid userId)
         {
             var cart = _context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId);
 
@@ -101,12 +102,12 @@ namespace Core.Controllers
                 {
                     ProductId = x.ProductId,
                     Quantity = x.Quantity
-                })
+                }).ToList()
             };
             _context.Order.Add(order);
-
+            cart.CartItems = new List<CartItem>();
             _context.SaveChanges();
-            return _context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId);
+            return new CartDto(_context.Cart.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId));
         }
 
     }
